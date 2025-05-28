@@ -1,27 +1,34 @@
-name: Code Reviewer AI Agent
+name: AI Code Review
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 jobs:
   review:
     runs-on: ubuntu-latest
 
+    permissions:
+      pull-requests: write
+      contents: read
+
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install requests openai PyGithub
+        run: pip install -r requirements.txt
 
-      - name: Run Code Review Agent
-        run: python review_agent.py
+      - name: Run AI Code Review
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF: ${{ github.ref }}
+          # DRY_RUN: 1  # ← Uncomment for local test
+        run: python review_agent.py

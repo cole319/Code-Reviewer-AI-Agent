@@ -28,6 +28,8 @@ if not REPO_NAME or not PR_NUMBER.isdigit():
 # === GitHub Setup ===
 g = Github(GITHUB_TOKEN)
 repo = g.get_repo(REPO_NAME)
+print(f"Repo: {REPO_NAME}, PR Number: {PR_NUMBER}")
+print(type(PR_NUMBER))
 pr = repo.get_pull(int(PR_NUMBER))
 
 # === Get Diff ===
