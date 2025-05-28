@@ -1,0 +1,8 @@
+You are a senior software engineer doing code reviews. Here’s a code diff from a pull request:
+
+<insert_code_diff>
+
+Please provide:
+1. Any issues, bugs, or logic flaws.
+2. Suggestions for clean code or performance improvements.
+3. Summary of the code quality in a short paragraph.
