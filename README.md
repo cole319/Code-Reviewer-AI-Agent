@@ -102,11 +102,11 @@ It helps teams maintain code quality by providing quick, AI-powered feedback dir
 
 ```css
 .
-├── code-review.yml          # GitHub Actions workflow
-├── review_agent.py          # Main Python script for PR review logic
-├── requirements.txt            # Python dependencies
-├── mock_github_api.py           # Mock script to run local tests
-├── prompt.txt               # Optional custom prompt for LLM
+├── code-review.yml    /* GitHub Actions workflow */
+├── review_agent.py    /* Main Python script for PR review logic */
+├── requirements.txt    /* Python dependencies */
+├── mock_github_api.py    /* Mock script to run local tests */
+├── prompt.txt    /* Optional custom prompt for LLM */
 └── README.md
 
 ```
