@@ -5,6 +5,13 @@ from github import Github
 
 load_dotenv()
 
+# === For Local Test ===
+# USE_MOCK = True
+
+# if USE_MOCK:
+    # from mock_github_api import MockGithub as Github
+
+
 # === Secure Token Selection ===
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN") or os.getenv("MY_GITHUB_PAT")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -16,13 +23,9 @@ if not OPENROUTER_API_KEY:
 
 # === GitHub Environment Setup ===
 REPO_NAME = os.getenv("GITHUB_REPOSITORY")
-GITHUB_REF = os.getenv("GITHUB_REF", "")
-try:
-    PR_NUMBER = GITHUB_REF.split('/')[2]
-except IndexError:
-    raise ValueError(f"❌ GITHUB_REF is malformed: {GITHUB_REF}")
+PR_NUMBER = os.getenv("PR_NUMBER")
 
-if not REPO_NAME or not PR_NUMBER.isdigit():
+if not REPO_NAME or not PR_NUMBER or not PR_NUMBER.isdigit():
     raise ValueError("❌ GITHUB_REPOSITORY or PR_NUMBER is invalid/missing.")
 
 # === GitHub Setup ===
